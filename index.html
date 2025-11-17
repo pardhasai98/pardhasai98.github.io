@@ -1,321 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Gudavalli Pardhasai — ML & DevOps Engineer</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pardhu Gudavalli — ML & DevOps Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <style>
-    /* General container */
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      background-color: #f9f9f9;
-      color: #333;
-      line-height: 1.6;
-    }
+    /* Base Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background: #f5f7fa; color: #333; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
 
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+    /* Container */
+    .container { max-width: 1200px; margin: auto; padding: 2rem; }
 
-    h2 {
-      margin-bottom: 15px;
-      color: #222;
-    }
+    /* Header */
+    header { text-align: center; padding: 4rem 2rem; background: #1f2937; color: #fff; }
+    header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    header p { font-size: 1.2rem; color: #d1d5db; }
 
-    .section {
-      padding: 50px 0;
-    }
+    /* Resume Button */
+    .resume-btn { display: inline-block; margin-top: 1rem; padding: 0.7rem 1.5rem; background: #3b82f6; color: #fff; border-radius: 6px; transition: 0.3s; }
+    .resume-btn:hover { background: #2563eb; }
 
-    .section.light {
-      background-color: #f0f0f0;
-    }
+    /* Section Titles */
+    h2 { font-size: 2rem; margin-bottom: 1rem; text-align: center; }
 
-    /* HERO */
-    .hero {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 50px 0;
-    }
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .project-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+    .project-card:hover { transform: translateY(-5px); }
+    .project-card img { width: 100%; height: 200px; object-fit: cover; }
+    .project-card-content { padding: 1rem; }
+    .project-card-content h3 { margin-bottom: 0.5rem; }
+    .project-card-content p { font-size: 0.95rem; color: #555; margin-bottom: 0.5rem; }
+    .project-card-content a { color: #3b82f6; font-weight: 600; }
 
-    .hero-left h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
+    /* Smooth fade-in animation */
+    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn 1s forwards; }
+    @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
-    .hero-left h1 span {
-      color: #1a73e8;
-    }
-
-    .subtitle {
-      font-weight: 500;
-      margin-bottom: 20px;
-    }
-
-    .lead {
-      margin-bottom: 20px;
-      font-size: 1.1rem;
-      color: #555;
-    }
-
-    .cta-row .btn {
-      display: inline-block;
-      margin-right: 15px;
-      padding: 10px 20px;
-      background-color: #1a73e8;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: background-color 0.3s ease;
-    }
-
-    .cta-row .btn:hover {
-      background-color: #0b4da0;
-    }
-
-    .btn-outline {
-      background-color: transparent;
-      color: #1a73e8;
-      border: 2px solid #1a73e8;
-    }
-
-    .btn-outline:hover {
-      background-color: #1a73e8;
-      color: #fff;
-    }
-
-    .hero-right {
-      text-align: center;
-    }
-
-    .photo-wrap {
-      width: 180px;
-      height: 180px;
-      margin: 0 auto 20px;
-      overflow: hidden;
-      border-radius: 50%;
-      border: 4px solid #1a73e8;
-    }
-
-    .photo-wrap img {
-      width: 100%;
-      height: auto;
-    }
-
-    .quick-stats {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .quick-stats li {
-      text-align: center;
-    }
-
-    .quick-stats strong {
-      display: block;
-      font-size: 1.2rem;
-      color: #1a73e8;
-    }
-
-    .skills-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .skills-list li {
-      margin-bottom: 10px;
-    }
-
-    /* PROJECTS */
-    .project {
-      background-color: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-
-    .project:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    }
-
-    .project h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      color: #333;
-    }
-
-    .project p {
-      margin-bottom: 10px;
-      color: #555;
-    }
-
-    .project .tags {
-      font-size: 0.85em;
-      color: #777;
-    }
-
-    .project .repo-link {
-      display: inline-block;
-      margin-top: 10px;
-      text-decoration: none;
-      color: #1a73e8;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    .project .repo-link:hover {
-      color: #0b4da0;
-    }
-
-    .project-img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      transition: transform 0.3s ease;
-    }
-
-    .project:hover .project-img {
-      transform: scale(1.05);
-    }
-
-    /* EXPERIENCE */
-    .exp-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .exp-list li {
-      margin-bottom: 10px;
-    }
-
-    /* CONTACT */
-    a {
-      color: #1a73e8;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* FOOTER */
-    .footer {
-      text-align: center;
-      padding: 20px 0;
-      color: #777;
-      border-top: 1px solid #ddd;
-    }
+    /* Footer */
+    footer { text-align: center; padding: 2rem; margin-top: 4rem; color: #6b7280; }
   </style>
 </head>
 <body>
+  <!-- Header / Hero -->
+  <header class="fade-in">
+    <h1>Pardhu Gudavalli</h1>
+    <p>ML & DevOps Engineer | Python, AWS, Terraform, Kubernetes</p>
+    <a class="resume-btn" href="resume.pdf" target="_blank">Download Resume</a>
+  </header>
+
   <main class="container">
-    <!-- HERO -->
-    <header class="hero" id="home">
-      <div class="hero-inner">
-        <div class="hero-left">
-          <h1>Gudavalli <span>Pardhasai</span></h1>
-          <p class="subtitle">Machine Learning Engineer • AWS & DevOps • 5+ years experience</p>
-          <p class="lead">
-            I build production-ready ML pipelines, cloud infrastructure, and automated deployments using AWS, Docker, Kubernetes, Terraform, and CI/CD.
-          </p>
-          <div class="cta-row">
-            <a class="btn" href="#projects">View Projects</a>
-            <a class="btn btn-outline" href="#contact">Contact</a>
+    <!-- Projects Section -->
+    <section class="fade-in">
+      <h2>My Projects</h2>
+      <div class="projects">
+        <!-- Project 1 -->
+        <div class="project-card fade-in" style="animation-delay: 0.2s;">
+          <img src="project1.png" alt="E-Commerce ML Project">
+          <div class="project-card-content">
+            <h3>E-Commerce ML Project</h3>
+            <p>Predict customer behavior and recommend products using ML algorithms.</p>
+            <a href="https://github.com/yourusername/ecommerce-ml-project" target="_blank">View on GitHub</a>
           </div>
         </div>
-
-        <div class="hero-right">
-          <!-- Profile photo -->
-          <div class="photo-wrap">
-            <img src="assets/photo.jpg" alt="Gudavalli Pardhasai" id="profile-photo" />
+        <!-- Project 2 -->
+        <div class="project-card fade-in" style="animation-delay: 0.4s;">
+          <img src="project2.png" alt="Traffic, Climate & Gas Project">
+          <div class="project-card-content">
+            <h3>Traffic, Climate & Gas Project</h3>
+            <p>Predict traffic, climate conditions, and gas prices on your route using ML models.</p>
+            <a href="https://github.com/yourusername/traffic-climate-gas" target="_blank">View on GitHub</a>
           </div>
-          <ul class="quick-stats">
-            <li><strong>5+</strong><span>Years</span></li>
-            <li><strong>AWS</strong><span>Cloud</span></li>
-            <li><strong>ML</strong><span>Production</span></li>
-          </ul>
         </div>
       </div>
-    </header>
-
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <h2>About Me</h2>
-      <p>
-        I am an ML & DevOps engineer with hands-on experience designing scalable machine learning systems and cloud-native infrastructure.
-        I specialize in model training, feature pipelines, CI/CD for ML, containerization, and observability.
-      </p>
     </section>
-
-    <!-- SKILLS -->
-    <section id="skills" class="section light">
-      <h2>Skills</h2>
-      <ul class="skills-list">
-        <li>Machine Learning: Python, scikit-learn, pandas, feature engineering, model evaluation</li>
-        <li>Cloud & Infra: AWS (EC2, S3, Lambda, EKS, RDS), IAM, networking</li>
-        <li>DevOps / MLOps: Jenkins, ArgoCD, Docker, Kubernetes, Terraform, Ansible</li>
-        <li>Data & Tools: Spark, Hive, Prometheus, Grafana, CloudWatch</li>
-      </ul>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <h2>Featured Projects</h2>
-
-      <div class="project">
-        <img src="assets/project1.png" alt="E-Commerce ML Project" class="project-img" />
-        <h3>E-Commerce ML Project</h3>
-        <p>An ML-powered e-commerce site with product classification and recommendation features. Built with Flask, Python and custom ML models.</p>
-        <p class="tags">Tech: Python • Flask • scikit-learn • Docker • AWS</p>
-        <a class="repo-link" href="https://github.com/pardhasai98/ecommerce-ml" target="_blank">View Repository →</a>
-      </div>
-
-      <div class="project">
-        <img src="assets/project2.png" alt="Traffic, Climate & Gas Predictor" class="project-img" />
-        <h3>Traffic, Climate & Gas Predictor</h3>
-        <p>Predicts traffic congestion, weather impact, and gas price estimates to optimize route planning. Includes notebooks, ETL scripts, and models.</p>
-        <p class="tags">Tech: Python • Pandas • scikit-learn • Jupyter • AWS</p>
-        <a class="repo-link" href="https://github.com/pardhasai98/traffic-climate-gas-ml" target="_blank">View Repository →</a>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience" class="section light">
-      <h2>Experience Snapshot</h2>
-      <ul class="exp-list">
-        <li><strong>ML Pipelines:</strong> End-to-end model training, validation, and deployment.</li>
-        <li><strong>Cloud Architecture:</strong> Infra as code, secure AWS deployments, and cost optimization.</li>
-        <li><strong>CI/CD & Automation:</strong> Jenkins + GitOps for ML and infra deployments.</li>
-      </ul>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p class="lead">
-        Email: <strong>your-email@example.com</strong>
-      </p>
-      <p>
-        LinkedIn: <a href="https://www.linkedin.com/in/your-linkedin" target="_blank">View Profile</a>
-      </p>
-      <p>If you'd like, include a short message here or link to a resume PDF in the repo assets.</p>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-      <p>© 2025 Gudavalli Pardhasai — ML & DevOps Engineer</p>
-    </footer>
   </main>
+
+  <footer class="fade-in">
+    &copy; 2025 Pardhu Gudavalli. All rights reserved.
+  </footer>
+
+  <script>
+    // Animate fade-ins when scrolling
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.style.animationPlayState = 'running';
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+    faders.forEach(fader => appearOnScroll.observe(fader));
+  </script>
 </body>
 </html>
