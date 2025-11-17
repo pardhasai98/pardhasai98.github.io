@@ -5,104 +5,358 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Gudavalli Pardhasai — ML & DevOps Engineer</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #222;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+
+    .fade-in {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    nav ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #1a73e8;
+    }
+
+    .resume-btn {
+      padding: 8px 15px;
+      background-color: #1a73e8;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .resume-btn:hover {
+      background-color: #0b4da0;
+      transform: scale(1.05);
+    }
+
+    .section {
+      padding: 50px 0;
+    }
+
+    .section.light {
+      background-color: #f0f0f0;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 50px 0;
+    }
+
+    .hero-left { flex: 1; min-width: 280px; }
+    .hero-left h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    .hero-left h1 span { color: #1a73e8; }
+    .subtitle { font-weight: 500; margin-bottom: 20px; }
+    .lead { margin-bottom: 20px; font-size: 1.1rem; color: #555; }
+
+    .cta-row .btn { display: inline-block; margin-right: 15px; padding: 10px 20px; background-color: #1a73e8; color: #fff; border-radius: 6px; text-decoration: none; transition: 0.3s; }
+    .cta-row .btn:hover { background-color: #0b4da0; transform: translateY(-2px); }
+    .btn-outline { background-color: transparent; color: #1a73e8; border: 2px solid #1a73e8; }
+    .btn-outline:hover { background-color: #1a73e8; color: #fff; }
+
+    .hero-right { flex: 1; min-width: 200px; text-align: center; margin-top: 20px; }
+    .photo-wrap { width: 180px; height: 180px; margin: 0 auto 20px; overflow: hidden; border-radius: 50%; border: 4px solid #1a73e8; transition: transform 0.5s ease, box-shadow 0.5s ease; }
+    .photo-wrap img { width: 100%; }
+    .photo-wrap:hover { transform: scale(1.08) rotate(3deg); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+    .quick-stats { list-style: none; padding: 0; display: flex; justify-content: center; gap: 20px; }
+    .quick-stats li { text-align: center; }
+    .quick-stats strong { display: block; font-size: 1.2rem; color: #1a73e8; }
+
+    .skills-list { list-style: none; padding: 0; }
+    .skills-list li { margin-bottom: 10px; }
+
+    .project {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    .project h3 { margin-top: 0; margin-bottom: 10px; color: #333; }
+    .project p { margin-bottom: 10px; color: #555; }
+    .project .tags { font-size: 0.85em; color: #777; }
+    .project .project-img { width: 100%; border-radius: 8px; margin-bottom: 15px; transition: transform 0.5s ease; }
+    .project:hover .project-img { transform: scale(1.05) rotate(1deg); }
+
+    .exp-list { list-style: none; padding: 0; opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+    .exp-list li { margin-bottom: 10px; }
+
+    a { color: #1a73e8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .footer { text-align: center; padding: 20px 0; color: #777; border-top: 1px solid #ddd; }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      padding-top: 60px;
+      left: 0; top: 0; width: 100%; height: 100%;
+      overflow: auto; background-color: rgba(0,0,0,0.8);
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: auto; padding: 20px;
+      border-radius: 12px;
+      max-width: 700px;
+      position: relative;
+      transform: translateY(-50px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .modal.show { display: block; opacity: 1; }
+    .modal.show .modal-content { transform: translateY(0); opacity: 1; }
+
+    .modal-content img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
+    .close { position: absolute; top: 10px; right: 15px; font-size: 28px; font-weight: bold; cursor: pointer; color: #333; transition: color 0.3s ease; }
+    .close:hover { color: #1a73e8; }
+
+    @media (max-width: 768px) { .hero { flex-direction: column; text-align: center; } .hero-left, .hero-right { flex: 1 1 100%; } .quick-stats { justify-content: center; gap: 10px; } nav ul { flex-direction: column; gap: 10px; } }
+  </style>
 </head>
 <body>
-  <main class="container">
-    <!-- HERO -->
-    <header class="hero" id="home">
-      <div class="hero-inner">
-        <div class="hero-left">
-          <h1>Gudavalli <span>Pardhasai</span></h1>
-          <p class="subtitle">Machine Learning Engineer • AWS & DevOps • 5+ years experience</p>
-          <p class="lead">
-            I build production-ready ML pipelines, cloud infrastructure, and automated deployments using AWS, Docker, Kubernetes, Terraform, and CI/CD.
-          </p>
-          <div class="cta-row">
-            <a class="btn" href="#projects">View Projects</a>
-            <a class="btn btn-outline" href="#contact">Contact</a>
-          </div>
+
+<!-- NAVBAR -->
+<nav>
+  <ul>
+    <li><a href="#home" class="nav-link active">Home</a></li>
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#skills" class="nav-link">Skills</a></li>
+    <li><a href="#projects" class="nav-link">Projects</a></li>
+    <li><a href="#experience" class="nav-link">Experience</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  </ul>
+  <a class="resume-btn" href="assets/Gudavalli_Pardhasai_Resume.pdf" download>Download Resume</a>
+</nav>
+
+<main class="container">
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <h1>Gudavalli <span>Pardhasai</span></h1>
+        <p class="subtitle">Machine Learning Engineer • AWS & DevOps • 5+ years experience</p>
+        <p class="lead">
+          I build production-ready ML pipelines, cloud infrastructure, and automated deployments using AWS, Docker, Kubernetes, Terraform, and CI/CD.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn btn-outline" href="#contact">Contact</a>
         </div>
-
-        <div class="hero-right">
-          <div class="photo-wrap">
-            <img src="assets/photo.jpg" alt="Gudavalli Pardhasai" id="profile-photo" />
-          </div>
-          <ul class="quick-stats">
-            <li><strong>5+</strong><span>Years</span></li>
-            <li><strong>AWS</strong><span>Cloud</span></li>
-            <li><strong>ML</strong><span>Production</span></li>
-          </ul>
+      </div>
+      <div class="hero-right">
+        <div class="photo-wrap">
+          <img src="assets/photo.jpg" alt="Gudavalli Pardhasai" id="profile-photo" />
         </div>
+        <ul class="quick-stats">
+          <li><strong>5+</strong><span>Years</span></li>
+          <li><strong>AWS</strong><span>Cloud</span></li>
+          <li><strong>ML</strong><span>Production</span></li>
+        </ul>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <h2>About Me</h2>
-      <p>
-        I am an ML & DevOps engineer with hands-on experience designing scalable machine learning systems and cloud-native infrastructure.
-        I specialize in model training, feature pipelines, CI/CD for ML, containerization, and observability.
-      </p>
-    </section>
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <h2>About Me</h2>
+    <p>I am an ML & DevOps engineer with hands-on experience designing scalable ML systems and cloud-native infrastructure.</p>
+  </section>
 
-    <!-- SKILLS -->
-    <section id="skills" class="section light">
-      <h2>Skills</h2>
-      <ul class="skills-list">
-        <li>Machine Learning: Python, scikit-learn, pandas, feature engineering, model evaluation</li>
-        <li>Cloud & Infra: AWS (EC2, S3, Lambda, EKS, RDS), IAM, networking</li>
-        <li>DevOps / MLOps: Jenkins, ArgoCD, Docker, Kubernetes, Terraform, Ansible</li>
-        <li>Data & Tools: Spark, Hive, Prometheus, Grafana, CloudWatch</li>
-      </ul>
-    </section>
+  <!-- SKILLS -->
+  <section id="skills" class="section light">
+    <h2>Skills</h2>
+    <ul class="skills-list">
+      <li>Machine Learning: Python, scikit-learn, pandas, feature engineering, model evaluation</li>
+      <li>Cloud & Infra: AWS (EC2, S3, Lambda, EKS, RDS), IAM, networking</li>
+      <li>DevOps / MLOps: Jenkins, ArgoCD, Docker, Kubernetes, Terraform, Ansible</li>
+      <li>Data & Tools: Spark, Hive, Prometheus, Grafana, CloudWatch</li>
+    </ul>
+  </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <h2>Featured Projects</h2>
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <h2>Featured Projects</h2>
 
-      <div class="project">
-        <img src="assets/images/project1.png" alt="E-Commerce ML Project" class="project-img">
-        <h3>E-Commerce ML Project</h3>
-        <p>An ML-powered e-commerce site with product classification and recommendation features. Built with Flask, Python, and custom ML models.</p>
-        <p class="tags">Tech: Python • Flask • scikit-learn • Docker • AWS</p>
-        <a class="repo-link" href="https://github.com/pardhasai98/ecommerce-ml" target="_blank">View Repository →</a>
-      </div>
+    <div class="project" data-modal="modal1">
+      <img src="assets/project1.png" alt="E-Commerce ML Project" class="project-img" />
+      <h3>E-Commerce ML Project</h3>
+      <p>An ML-powered e-commerce site with product classification and recommendation features. Built with Flask, Python, Docker, AWS.</p>
+    </div>
 
-      <div class="project">
-        <img src="assets/images/project2.png" alt="Traffic, Climate & Gas Project" class="project-img">
-        <h3>Traffic, Climate & Gas Predictor</h3>
-        <p>Predicts traffic congestion, weather impact, and gas price estimates to optimize route planning. Includes notebooks, ETL scripts, and models.</p>
-        <p class="tags">Tech: Python • Pandas • scikit-learn • Jupyter • AWS</p>
-        <a class="repo-link" href="https://github.com/pardhasai98/traffic-climate-gas-ml" target="_blank">View Repository →</a>
-      </div>
-    </section>
+    <div class="project" data-modal="modal2">
+      <img src="assets/project2.png" alt="Traffic, Climate & Gas Predictor" class="project-img" />
+      <h3>Traffic, Climate & Gas Predictor</h3>
+      <p>Predicts traffic congestion, weather impact, and gas price estimates to optimize route planning. Built with Python, Pandas, scikit-learn, Jupyter, AWS.</p>
+    </div>
+  </section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience" class="section light">
-      <h2>Experience Snapshot</h2>
-      <ul class="exp-list">
-        <li><strong>ML Pipelines:</strong> End-to-end model training, validation, and deployment.</li>
-        <li><strong>Cloud Architecture:</strong> Infra as code, secure AWS deployments, and cost optimization.</li>
-        <li><strong>CI/CD & Automation:</strong> Jenkins + GitOps for ML and infra deployments.</li>
-      </ul>
-    </section>
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section light">
+    <h2>Experience Snapshot</h2>
+    <ul class="exp-list">
+      <li><strong>ML Pipelines:</strong> End-to-end model training, validation, and deployment.</li>
+      <li><strong>Cloud Architecture:</strong> Infra as code, secure AWS deployments, and cost optimization.</li>
+      <li><strong>CI/CD & Automation:</strong> Jenkins + GitOps for ML and infra deployments.</li>
+    </ul>
+  </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p class="lead">
-        Email: <strong>your-email@example.com</strong>
-      </p>
-      <p>
-        LinkedIn: <a href="https://www.linkedin.com/in/your-linkedin" target="_blank">View Profile</a>
-      </p>
-      <p>If you'd like, include a short message here or link to a resume PDF in the repo assets.</p>
-    </section>
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <p class="lead">Email: <strong>your-email@example.com</strong></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/your-linkedin" target="_blank">View Profile</a></p>
+    <p>Include a short message or link to resume if needed.</p>
+  </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-      <p>© 2025 Gudavalli Pardhasai — ML & DevOps Engineer</p>
-    </footer>
-  </main>
+  <footer class="footer">
+    <p>© 2025 Gudavalli Pardhasai — ML & DevOps Engineer</p>
+  </footer>
+</main>
+
+<!-- MODALS -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>E-Commerce ML Project</h3>
+    <img src="assets/project1.png" alt="E-Commerce ML Project" />
+    <p>Full details of the project including code, screenshots, and ML pipeline description.</p>
+    <a href="https://github.com/pardhasai98/ecommerce-ml" target="_blank">View Repository →</a>
+  </div>
+</div>
+
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Traffic, Climate & Gas Predictor</h3>
+    <img src="assets/project2.png" alt="Traffic, Climate & Gas Predictor" />
+    <p>Full details including notebooks, ETL scripts, model architecture, and predictions.</p>
+    <a href="https://github.com/pardhasai98/traffic-climate-gas-ml" target="_blank">View Repository →</a>
+  </div>
+</div>
+
+<script>
+  // Fade-in animations
+  const faders = document.querySelectorAll('h2, .project, .exp-list');
+  const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+  const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('fade-in');
+      observer.unobserve(entry.target);
+    });
+  }, appearOptions);
+  faders.forEach(fader => appearOnScroll.observe(fader));
+
+  // Navbar active link highlighting
+  const sections = document.querySelectorAll('section, header');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 70;
+      if (pageYOffset >= sectionTop) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+
+  // MODAL LOGIC with smooth animation
+  const projects = document.querySelectorAll('.project');
+  const modals = document.querySelectorAll('.modal');
+  const closeBtns = document.querySelectorAll('.close');
+
+  projects.forEach(project => {
+    project.addEventListener('click', () => {
+      const modal = document.getElementById(project.dataset.modal);
+      modal.classList.add('show');
+    });
+  });
+
+  closeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.modal').classList.remove('show');
+    });
+  });
+
+  window.onclick = function(event) {
+    modals.forEach(modal => {
+      if (event.target == modal) modal.classList.remove('show');
+    });
+  }
+</script>
 </body>
 </html>
