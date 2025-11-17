@@ -10,28 +10,23 @@
 
 <!-- NAVBAR -->
 <nav>
-  <div class="nav-container">
-    <div class="logo">Pardhasai</div>
-    <ul class="nav-links">
-      <li><a href="#home" class="nav-link active">Home</a></li>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#skills" class="nav-link">Skills</a></li>
-      <li><a href="#projects" class="nav-link">Projects</a></li>
-      <li><a href="#experience" class="nav-link">Experience</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-    </ul>
-    <a href="assets/Gudavalli_Pardhasai_Resume.pdf" class="resume-btn" download>Download Resume</a>
-  </div>
+  <ul>
+    <li><a href="#home" class="nav-link active">Home</a></li>
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#skills" class="nav-link">Skills</a></li>
+    <li><a href="#projects" class="nav-link">Projects</a></li>
+    <li><a href="#experience" class="nav-link">Experience</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  </ul>
+  <a href="assets/Gudavalli_Pardhasai_Resume.pdf" class="resume-btn" download>Download Resume</a>
 </nav>
 
-<!-- HERO SECTION -->
-<section class="hero" id="home">
+<!-- HERO -->
+<header class="hero" id="home">
   <div class="hero-left">
     <h1>Gudavalli <span>Pardhasai</span></h1>
     <p class="subtitle">Machine Learning Engineer • AWS & DevOps • 5+ Years Experience</p>
-    <p class="lead">
-      I build production-ready ML pipelines, cloud infrastructure, and automated deployments using AWS, Docker, Kubernetes, Terraform, and CI/CD.
-    </p>
+    <p class="lead">I build production-ready ML pipelines, cloud infrastructure, and automated deployments using AWS, Docker, Kubernetes, Terraform, and CI/CD.</p>
     <div class="cta-row">
       <a href="#projects" class="btn">View Projects</a>
       <a href="#contact" class="btn btn-outline">Contact Me</a>
@@ -47,7 +42,7 @@
       <li><strong>ML</strong><span>Production</span></li>
     </ul>
   </div>
-</section>
+</header>
 
 <!-- ABOUT -->
 <section id="about" class="section">
@@ -71,14 +66,14 @@
   <h2>Featured Projects</h2>
   <div class="projects-grid">
 
-    <div class="project" data-modal="modal1">
+    <div class="project">
       <img src="assets/project1.png" alt="E-Commerce ML Project" class="project-img">
       <h3>E-Commerce ML Project</h3>
       <p>ML-powered e-commerce site with product classification and recommendations.</p>
       <a href="https://github.com/pardhasai98/ecommerce-ml" target="_blank" class="repo-link">View Repo →</a>
     </div>
 
-    <div class="project" data-modal="modal2">
+    <div class="project">
       <img src="assets/project2.png" alt="Traffic, Climate & Gas Predictor" class="project-img">
       <h3>Traffic, Climate & Gas Predictor</h3>
       <p>Predicts traffic congestion, weather impact, and gas price estimates for optimized route planning.</p>
@@ -109,18 +104,6 @@
 <footer class="footer">
   <p>© 2025 Gudavalli Pardhasai — ML & DevOps Engineer</p>
 </footer>
-
-<script>
-  // Smooth scroll for navbar links
-  const navLinks = document.querySelectorAll('.nav-link');
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e){
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      target.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-</script>
 
 </body>
 </html>
